@@ -1,17 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+  
+let accordian = document.getElementsByClassName("FAQ__title");
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+for (let i = 0; i < accordian.length; i++) {
+  accordian[i].addEventListener("click", function () {
+    if (this.childNodes[1].classList.contains("fa-plus")) {
+      this.childNodes[1].classList.remove("fa-plus");
+      this.childNodes[1].classList.add("fa-times");
+    } else {
+      this.childNodes[1].classList.remove("fa-times");
+      this.childNodes[1].classList.add("fa-plus");
+    }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    let content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
